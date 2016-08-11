@@ -1,6 +1,4 @@
 #!/bin/bash
-set -e
-
 MOUNT_MODE='standard'
 MOUNT_DIR='/mnt'
 
