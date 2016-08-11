@@ -21,6 +21,7 @@ shift $(($OPTIND - 1))
 while [ $# -gt 0 ]; do
   FS_ID="$1"
   MNT="${MOUNT_DIR}/${FS_ID}"
+  shift
 
   ENDPOINT="${EC2_AZ}.${FS_ID}.efs.${EC2_AZ%?}.amazonaws.com:/"
   case "${MOUNT_MODE}" in
