@@ -23,6 +23,8 @@ while [ $# -gt 0 ]; do
   MNT="${MOUNT_DIR}/${FS_ID}"
   shift
 
+  [ -d "${MNT}" ] || mkdir -p "${MNT}"
+
   ENDPOINT="${EC2_AZ}.${FS_ID}.efs.${EC2_AZ%?}.amazonaws.com:/"
   case "${MOUNT_MODE}" in
     rancheros)
@@ -30,7 +32,6 @@ while [ $# -gt 0 ]; do
     ;;
     standard)
       echo -n "Mounting ${ENDPOINT} to ${MNT}... "
-      [ -d "${MNT}" ] || mkdir -p "${MNT}"
       rpcbind
       mount -t nfs4 -o nfsvers=4.1,nolock "${ENDPOINT}" "${MNT}"
       if [ $? -ne 0 ]; then
