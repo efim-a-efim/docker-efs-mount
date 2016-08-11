@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 FS_ID="$1"
@@ -11,4 +11,4 @@ EC2_REGION="${EC2_AZ%?}"
 
 rpcbind
 
-mount -t nfs4 -o nfsvers=4.1,nolock "${EC2_AZ}.${FS_ID}.efs.${EC2_REGION}.amazonaws.com:/" "${MNT_DIR}"
+mount -t nfs4 -o nfsvers=4.1,nolock "${EC2_AZ}.${FS_ID}.efs.${EC2_AZ%?}.amazonaws.com:/" "${MNT_DIR}"
